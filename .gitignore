@@ -16,3 +16,18 @@ Thumbs.db
 # Private stuff
 .private
 .secret
+
+# MacOS dirs
+Desktop/
+Documents/
+Downloads/
+Library/
+Movies/
+Music/
+Pictures/
+Public/
+
+# Other stuff
+backup/
+bin/
+src/
