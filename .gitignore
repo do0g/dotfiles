@@ -15,7 +15,9 @@ Thumbs.db
 
 # Private stuff
 .private
+.private*
 .secret
+.ssh/
 
 # MacOS dirs
 Desktop/
@@ -31,3 +33,15 @@ Public/
 backup/
 bin/
 src/
+
+# MacOS Shite
+.CFUserTextEncoding
+
+# All of the other things
+.bash_history
+.bash_sessions/
+.config/
+.gnupg/
+.npm/
+.oh-my-vim/
+.vim*
