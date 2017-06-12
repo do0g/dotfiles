@@ -18,6 +18,9 @@
 
     co  = checkout
 
+    # Exec a command in the top-level directory, ie git exec npm run build
+	exec = "!exec "
+
     # Got it all wrong?
     blat = reset --hard HEAD
 
