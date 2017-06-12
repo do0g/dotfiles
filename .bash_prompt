@@ -1,1 +1,3 @@
-. prompt/.bash-powerline.sh
+#!/usr/bin/env bash
+
+source ~/prompt/.bash-powerline.sh
