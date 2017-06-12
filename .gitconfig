@@ -2,6 +2,30 @@
     path = .private.gitconfig
 
 [alias]
+    # too many keys, arrgh!
+    a   = add
+    au  = add -u
+
+    sku = stash -k -u
+    sp  = stash pop
+    sa  = stash apply
+
+    dc  = diff --cached
+    ds  = diff --staged
+
+    c   = commit
+    cm  = commit -m
+
+    co  = checkout
+
+    # Got it all wrong?
+    blat = reset --hard HEAD
+
+    # get the remote tracking branch for the current branch
+    track = "!git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD)"
+
+    # It's the best git alias of all time. OF ALL TIME.
+    fucked = "!git commit -am \"`curl -s http://whatthecommit.com/index.txt`\""
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
@@ -19,7 +43,7 @@
 	p = !"git pull; git submodule foreach git pull origin master"
 
 	# Clone a repository including all submodules
-	c = clone --recursive
+	cl = clone --recursive
 
 	# Commit all changes
 	ca = !git add -A && git commit -av
@@ -161,12 +185,10 @@
 
 [push]
 
-	# Use the Git 1.x.x default to avoid errors on machines with old Git
-	# installations. To use `simple` instead, add this to your `~/.extra` file:
-	# `git config --global push.default simple`. See http://git.io/mMah-w.
-	default = matching
-	# Make `git push` push relevant annotated tags when pushing branches out.
-	followTags = true
+	# See http://git.io/mMah-w.
+	default = simple
+	# Make `git push` not push relevant annotated tags when pushing branches out.
+	followTags = false
 
 # URL shorthands
 
