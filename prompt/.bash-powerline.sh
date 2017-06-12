@@ -6,10 +6,11 @@ __powerline() {
     readonly PS_SYMBOL_DARWIN=''
     readonly PS_SYMBOL_LINUX='$'
     readonly PS_SYMBOL_OTHER='%'
-    readonly GIT_BRANCH_SYMBOL='⑂ '
+    readonly GIT_BRANCH_SYMBOL='⑂'
     readonly GIT_BRANCH_CHANGED_SYMBOL='+'
     readonly GIT_NEED_PUSH_SYMBOL='⇡'
     readonly GIT_NEED_PULL_SYMBOL='⇣'
+    readonly ARROW=$'\xee\x82\xb0'
 
     # Solarized colorscheme
     if [[ $(tput colors) -ge 256 ]] 2>/dev/null; then
@@ -111,21 +112,27 @@ __powerline() {
         # get current branch name or short SHA1 hash for detached head
         local branch="$($git_eng symbolic-ref --short HEAD 2>/dev/null || $git_eng describe --tags --always 2>/dev/null)"
         [ -n "$branch" ] || return  # git branch not found
+        
+        local tracking="$(git for-each-ref --format='%(upstream:short)' $(git symbolic-ref -q HEAD))"
 
-        local marks
+        local changed
+        local push_marks
+        local pull_marks
 
         # branch is modified?
-        [ -n "$($git_eng status --porcelain)" ] && marks+=" $GIT_BRANCH_CHANGED_SYMBOL"
+        [ -n "$($git_eng status --porcelain)" ] && changed="$GIT_BRANCH_CHANGED_SYMBOL"
 
         # how many commits local branch is ahead/behind of remote?
         local stat="$($git_eng status --porcelain --branch | grep '^##' | grep -o '\[.\+\]$')"
         local aheadN="$(echo $stat | grep -o 'ahead [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
         local behindN="$(echo $stat | grep -o 'behind [[:digit:]]\+' | grep -o '[[:digit:]]\+')"
-        [ -n "$aheadN" ] && marks+=" $GIT_NEED_PUSH_SYMBOL$aheadN"
-        [ -n "$behindN" ] && marks+=" $GIT_NEED_PULL_SYMBOL$behindN"
+        [ -n "$aheadN" ] && push_marks="$GIT_NEED_PUSH_SYMBOL$aheadN"
+        [ -n "$behindN" ] && pull_marks="$GIT_NEED_PULL_SYMBOL$behindN"
 
-        # print the git branch segment without a trailing newline
-        printf " $GIT_BRANCH_SYMBOL$branch$marks "
+        readonly separator=$(tput setaf 4)
+        readonly remote=$(tput setaf 20)
+		[ -n "$tracking" ] && tracking="$remote${tracking%/${branch}} "
+        printf "%s" " $branch$changed $push_marks${GIT_BRANCH_SYMBOL:0:1}$pull_marks $tracking"
     }
 
     ps1() {
@@ -137,7 +144,7 @@ __powerline() {
             local BG_EXIT="$BG_RED"
         fi
 
-        PS1="$BG_BASE1$FG_BASE3 \w $RESET"
+        PS1="$BG_BASE1$FG_BASE3 \w $FG_BASE1$BG_BLUE$ARROW$RESET"
         # Bash by default expands the content of PS1 unless promptvars is disabled.
         # We must use another layer of reference to prevent expanding any user
         # provided strings, which would cause security issues.
@@ -150,7 +157,7 @@ __powerline() {
             # promptvars is disabled. Avoid creating unnecessary env var.
             PS1+="$BG_BLUE$FG_BASE3$(__git_info)$RESET"
         fi
-        PS1+="$BG_EXIT$FG_BASE3$RESET "
+        PS1+="$BG_EXIT$RESET$FG_BLUE$ARROW$RESET "
     }
 
     PROMPT_COMMAND=ps1
