@@ -1,3 +1,4 @@
+" NeoComplete {{{
 
 " " Define dictionary.
 " let g:neocomplete#sources#dictionary#dictionaries = {
@@ -41,5 +42,32 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 "let g:neocomplete#disable_auto_complete = 1
 "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
+" End NeoComplete }}}
+
+" Default Overrides {{{
+
 " Cursors can't go everywhere, mannnnnn
 set virtualedit=""
+
+" END Default Overrides }}}
+
+" UltiSnips {{{
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+" END UltiSnips }}}
+
+" Plugins {{{
+call neobundle#append()
+
+" VimWiki
+NeoBundle 'vimwiki/vimwiki'
+
+call neobundle#end()
+" END Plugins }}}
