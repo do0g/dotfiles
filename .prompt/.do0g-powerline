@@ -131,9 +131,7 @@ __powerline() {
         [ -n "$aheadN" ] && push_marks="$GIT_NEED_PUSH_SYMBOL$aheadN"
         [ -n "$behindN" ] && pull_marks="$GIT_NEED_PULL_SYMBOL$behindN"
 
-        readonly separator=$(tput setaf 4)
-        readonly remote=$(tput setaf 20)
-		[ -n "$tracking" ] && tracking="$remote${tracking%/${branch}} "
+		[ -n "$tracking" ] && tracking="${tracking%/${branch}} "
         printf "%s" " $branch$changed $push_marks${GIT_BRANCH_SYMBOL:0:1}$pull_marks $tracking"
     }
 
