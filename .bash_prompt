@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
 source ~/.prompt/.do0g-powerline
+
+eval "$(direnv hook bash)"
