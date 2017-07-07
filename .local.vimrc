@@ -66,5 +66,11 @@ call neobundle#append()
 " VimWiki
 NeoBundle 'vimwiki/vimwiki'
 
+" TaskWiki and related plugins
+NeoBundle 'tbabej/taskwiki'
+NeoBundle 'powerman/vim-plugin-AnsiEsc'
+NeoBundle 'majutsushi/tagbar'
+NeoBundle 'farseer90718/vim-taskwarrior'
+
 call neobundle#end()
 " END Plugins }}}
