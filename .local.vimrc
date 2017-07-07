@@ -46,9 +46,6 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 " Default Overrides {{{
 
-" Cursors can't go everywhere, mannnnnn
-set virtualedit=""
-
 " END Default Overrides }}}
 
 " UltiSnips {{{
