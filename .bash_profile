@@ -1,4 +1,6 @@
-# Use local
+cat ~/.moss-piglets
+
+# Use local binaries over system
 export PATH="$HOME/bin:$PATH";
 
 # Load the shell dotfiles, and then some:
