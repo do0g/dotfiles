@@ -149,7 +149,7 @@ __powerline() {
             local BG_EXIT="$BG_RED"
         fi
 
-        PS1="$BG_BASE1$FG_BASE3 \w $FG_BASE1$BG_BLUE$ARROW$RESET"
+        PS1="$BG_BASE1$FG_BASE3 \w $FG_BASE1$BG_ORANGE$ARROW$RESET"
         # Bash by default expands the content of PS1 unless promptvars is disabled.
         # We must use another layer of reference to prevent expanding any user
         # provided strings, which would cause security issues.
@@ -157,12 +157,12 @@ __powerline() {
         # Related fix in git-bash: https://github.com/git/git/blob/9d77b0405ce6b471cb5ce3a904368fc25e55643d/contrib/completion/git-prompt.sh#L324
         if shopt -q promptvars; then
             __powerline_git_info="$(__git_info)"
-            PS1+="$BG_BLUE$FG_BASE3\${__powerline_git_info}$RESET"
+            PS1+="$BG_ORANGE$FG_BASE3\${__powerline_git_info}$RESET"
         else
             # promptvars is disabled. Avoid creating unnecessary env var.
-            PS1+="$BG_BLUE$FG_BASE3$(__git_info)$RESET"
+            PS1+="$BG_ORANGE$FG_BASE3$(__git_info)$RESET"
         fi
-        PS1+="$BG_EXIT$RESET$FG_BLUE$ARROW$RESET "
+        PS1+="$BG_EXIT$RESET$FG_ORANGE$ARROW$RESET "
     }
 
     PROMPT_COMMAND=ps1
