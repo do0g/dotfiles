@@ -18,30 +18,48 @@ Thumbs.db
 .private*
 .secret
 .ssh/
+vimwiki/
+
+# Private -Taskwarrior
+/.task/
+/.taskrc
+
+# Private - Wifi location switching
+/.locations/
+
+# Private - direnv
+/.envrc*
 
 # MacOS dirs
-Desktop/
-Documents/
-Downloads/
-Library/
-Movies/
-Music/
-Pictures/
-Public/
+/Desktop/
+/Documents/
+/Downloads/
+/Library/
+/Movies/
+/Music/
+/Pictures/
+/Public/
+/Applications/
 
 # Other stuff
-backup/
-bin/
-src/
+/backup/
+/bin/
+/src/
 
 # MacOS Shite
 .CFUserTextEncoding
 
-# All of the other things
-.bash_history
-.bash_sessions/
-.config/
-.gnupg/
-.npm/
-.oh-my-vim/
-.vim*
+# All of the things
+/.bash_history
+/.bash_sessions/
+/.config/
+/.gnupg/
+/.npm/
+/.oh-my-vim/
+/.vim*
+/.Xauthority
+/.cache/
+/.cups/
+/.rnd
+/.serverauth*
+/.v8flags*
