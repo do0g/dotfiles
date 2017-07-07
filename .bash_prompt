@@ -3,3 +3,8 @@
 # dang that's a good prompt
 source ~/.prompt/do0g-powerline
 
+# direnv security gets pretty annoying when you attempt to dynamically update a 
+# .envrc file, so allow the root .envrc on each command
+direnv allow ~/.
+# and then let direnv do its thing
+eval "$(direnv hook bash)"
